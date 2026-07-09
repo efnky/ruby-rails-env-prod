@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libsqlite3-0 \
     && rm -rf /var/lib/apt/lists/* && \
     groupadd -r rails && useradd -r -g rails -u 1001 rails
+COPY --from=builder /usr/local/bundle /usr/local/bundle
 COPY --from=builder /app/vendor/bundle /app/vendor/bundle
 COPY . .
 RUN bundle config set --local deployment 'true' && \
