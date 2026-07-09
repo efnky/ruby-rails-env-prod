@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* && \
     groupadd -r rails && useradd -r -g rails -u 1001 rails
 COPY --from=builder /app/vendor/bundle /app/vendor/bundle
-COPY --from=builder /app/.bundle /app/.bundle
 COPY . .
 RUN bundle config set --local deployment 'true' && \
     bundle config set --local without 'development test' && \
